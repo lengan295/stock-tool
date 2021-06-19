@@ -21,6 +21,15 @@ return function (ContainerBuilder $containerBuilder) {
             $logger->pushProcessor($processor);
 
             $handler = new StreamHandler($loggerSettings['path'], $loggerSettings['level']);
+
+            $formatter = new \Monolog\Formatter\LineFormatter(
+                null, // Format of message in log, default [%datetime%] %channel%.%level_name%: %message% %context% %extra%\n
+                null, // Datetime format
+                true, // allowInlineLineBreaks option, default false
+                true  // discard empty Square brackets in the end, default false
+            );
+            $handler->setFormatter($formatter);
+
             $logger->pushHandler($handler);
 
             return $logger;
