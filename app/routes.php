@@ -14,10 +14,7 @@ return function (App $app) {
         return $response;
     });
 
-    $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
-        return $response;
-    });
+    $app->get('/', \App\Application\Actions\Homepage\HomepageAction::class);
 
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
