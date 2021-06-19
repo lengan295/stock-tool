@@ -5,9 +5,14 @@ namespace App\Infrastructure\FinfoVndSdk;
 
 
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentDataParser;
+use Psr\Log\LoggerInterface;
 
 class ApiClient {
     const URL_BASE = "https://finfo-api.vndirect.com.vn/v4/";
+
+    public function __construct(LoggerInterface $logger) {
+        $this->logger = $logger;
+    }
 
     public function getCompanyCurrentData($code) {
         $itemCodeList =
@@ -26,5 +31,6 @@ class ApiClient {
             CompanyCurrentDataParser::ITEM_CODE_ROAA . "," .
             CompanyCurrentDataParser::ITEM_CODE_EPS . ",";
         $url = self::URL_BASE . "ratios/latest?filter=itemCode:" . $itemCodeList . "&where=code:" . $code . "&order=reportDate&fields=itemCode,value";
+        $this->logger->debug('url : ' . $url);
     }
 }
