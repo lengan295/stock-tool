@@ -4,14 +4,24 @@
 namespace App\Infrastructure\FinfoVndSdk;
 
 
+use anlutro\cURL\cURL;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentDataParser;
 use Psr\Log\LoggerInterface;
 
 class ApiClient {
     const URL_BASE = "https://finfo-api.vndirect.com.vn/v4/";
 
-    public function __construct(LoggerInterface $logger) {
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /** @var cURL */
+    private $curl;
+
+    public function __construct(LoggerInterface $logger, $curl) {
         $this->logger = $logger;
+        $this->curl = $curl;
     }
 
     public function getCompanyCurrentData($code) {
@@ -31,6 +41,27 @@ class ApiClient {
             CompanyCurrentDataParser::ITEM_CODE_ROAA . "," .
             CompanyCurrentDataParser::ITEM_CODE_EPS . ",";
         $url = self::URL_BASE . "ratios/latest?filter=itemCode:" . $itemCodeList . "&where=code:" . $code . "&order=reportDate&fields=itemCode,value";
-        $this->logger->debug('url : ' . $url);
+
+        $raw_response = $this->invokeGet($url);
+
+        $parser = new CompanyCurrentDataParser();
+        $data = $parser->parse($raw_response);
+        $data->code = $code;
+
+        $this->logger->debug(print_r($data, 1));
+
+        return $data;
+    }
+
+    private function invokeGet(string $url) {
+        $response = $this->curl->get($url);
+        $body = json_decode($response->getBody(), true);
+
+        if ($response->statusCode != 200) {
+            $this->logger->error(self::class . ":" . __FUNCTION__, (array)$body);
+            throw new ApiException('API error (' . $body["error"] . ") : " . $body["message"]);
+        }
+
+        return $body;
     }
 }
