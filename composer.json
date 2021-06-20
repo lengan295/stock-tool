@@ -25,6 +25,7 @@
         "php": "^7.2 || ^8.0",
         "ext-json": "*",
         "anlutro/curl": "^1.5",
+        "doctrine/orm": "^2.9",
         "monolog/monolog": "^2.2",
         "php-di/php-di": "^6.3",
         "slim/psr7": "^1.3",
