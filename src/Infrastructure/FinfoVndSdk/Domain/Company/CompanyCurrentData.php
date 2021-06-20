@@ -7,16 +7,16 @@ namespace App\Infrastructure\FinfoVndSdk\Domain\Company;
 class CompanyCurrentData {
     public $code;
 
-    public $market_cap;
-    public $volume_10_session;
-    public $max_52_weeks;
-    public $min_52_weeks;
+    public $marketCap;
+    public $volume10Session;
+    public $max52Weeks;
+    public $min52Weeks;
     public $shares;
-    public $free_float;
+    public $freeFloat;
     public $beta;
     public $pe;
     public $pb;
-    public $dividend_rate;
+    public $dividendRate;
     public $bvps;
     public $roae;
     public $roaa;

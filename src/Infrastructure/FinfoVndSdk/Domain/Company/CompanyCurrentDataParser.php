@@ -28,22 +28,22 @@ class CompanyCurrentDataParser {
         foreach ($raw_response["data"] as $item) {
             switch($item["itemCode"]) {
                 case self::ITEM_CODE_MARKET_CAP :
-                    $data->market_cap = $item["value"];
+                    $data->marketCap = $item["value"];
                     break;
                 case self::ITEM_CODE_VOLUME_10_SESSION :
-                    $data->volume_10_session = $item["value"];
+                    $data->volume10Session = $item["value"];
                     break;
                 case self::ITEM_CODE_MAX_52_WEEKS :
-                    $data->max_52_weeks = $item["value"];
+                    $data->max52Weeks = $item["value"];
                     break;
                 case self::ITEM_CODE_MIN_52_WEEKS :
-                    $data->min_52_weeks = $item["value"];
+                    $data->min52Weeks = $item["value"];
                     break;
                 case self::ITEM_CODE_SHARES :
                     $data->shares = $item["value"];
                     break;
                 case self::ITEM_CODE_FREE_FLOAT :
-                    $data->free_float = $item["value"];
+                    $data->freeFloat = $item["value"];
                     break;
                 case self::ITEM_CODE_BETA :
                     $data->beta = $item["value"];
@@ -55,7 +55,7 @@ class CompanyCurrentDataParser {
                     $data->pb = $item["value"];
                     break;
                 case self::ITEM_CODE_DIVIDEND_RATE :
-                    $data->dividend_rate = $item["value"];
+                    $data->dividendRate = $item["value"];
                     break;
                 case self::ITEM_CODE_BVPS :
                     $data->bvps = $item["value"];

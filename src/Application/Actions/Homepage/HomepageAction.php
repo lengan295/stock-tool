@@ -27,16 +27,16 @@ class HomepageAction extends Action {
             $company = new Company();
         }
         $company->setCode($data->code);
-        $company->setMarketCap($data->market_cap);
-        $company->setVolume10Session($data->volume_10_session);
-        $company->setMax52Weeks($data->max_52_weeks);
-        $company->setMin52Weeks($data->min_52_weeks);
+        $company->setMarketCap($data->marketCap);
+        $company->setVolume10Session($data->volume10Session);
+        $company->setMax52Weeks($data->max52Weeks);
+        $company->setMin52Weeks($data->min52Weeks);
         $company->setShares($data->shares);
-        $company->setFreeFloat($data->free_float);
+        $company->setFreeFloat($data->freeFloat);
         $company->setBeta($data->beta);
         $company->setPe($data->pe);
         $company->setPb($data->pb);
-        $company->setDividendRate($data->dividend_rate);
+        $company->setDividendRate($data->dividendRate);
         $company->setBvps($data->bvps);
         $company->setRoae($data->roae);
         $company->setRoaa($data->roaa);
