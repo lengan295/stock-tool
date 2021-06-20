@@ -1,13 +1,16 @@
+historical data :
+https://finfo-api.vndirect.com.vn/v3/stocks/financialStatement?secCodes=VHM&reportTypes=ANNUAL&modelTypes=1,2,3&toDate=2021-12-31
+
 BALANCESHEET
-https://finfo-api.vndirect.com.vn/v4/financial_models?sort=displayOrder:asc&q=codeList:VHM~modelType:1,89,101,411~note:TT199/2014/TT-BTC,TT334/2016/TT-BTC,TT49/2014/TT-NHNN,TT202/2014/TT-BTC~displayLevel:0,1,2,3&size=999
+https://finfo-api.vndirect.com.vn/v3/stocks/financialStatement?secCodes=VHM&reportTypes=ANNUAL&modelTypes=1,89,101,411&fromDate=2015-12-31&toDate=2021-12-31
 
 INCOME
-https://finfo-api.vndirect.com.vn/v4/financial_models?sort=displayOrder:asc&q=codeList:VHM~modelType:2,90,102,412~note:TT199/2014/TT-BTC,TT334/2016/TT-BTC,TT49/2014/TT-NHNN,TT202/2014/TT-BTC~displayLevel:0,1,2,3&size=999
+https://finfo-api.vndirect.com.vn/v3/stocks/financialStatement?secCodes=VHM&reportTypes=ANNUAL&modelTypes=2,90,102,412&fromDate=2015-12-31&toDate=2021-12-31
 
 CASHFLOW
-https://finfo-api.vndirect.com.vn/v4/financial_models?sort=displayOrder:asc&q=codeList:VHM~modelType:3,91,103,413~note:TT199/2014/TT-BTC,TT334/2016/TT-BTC,TT49/2014/TT-NHNN,TT202/2014/TT-BTC~displayLevel:0,1,2,3&size=999
+https://finfo-api.vndirect.com.vn/v3/stocks/financialStatement?secCodes=VHM&reportTypes=ANNUAL&modelTypes=3,91,103,413&fromDate=2015-12-31&toDate=2021-12-31
 
-infos
+current data
 https://finfo-api.vndirect.com.vn/v4/ratios/latest?filter=itemCode:51003,51016,51001,51002,51004,57066,51007,51006,51012,51033,51035,52002,52001,53007,&where=code:VHM&order=reportDate&fields=itemCode,value
 
 https://finfo-api.vndirect.com.vn/v4/industry_classification?q=codeList:VHM~industryLevel:2,3
