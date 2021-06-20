@@ -19,6 +19,8 @@ $dbParams = $settings->get('database');
 
 $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
 $entityManager = \Doctrine\ORM\EntityManager::create($dbParams, $config);
+$conn = $entityManager->getConnection();
+$conn->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 
 return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
 
