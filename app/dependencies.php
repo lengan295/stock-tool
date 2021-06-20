@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use App\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;
+use Doctrine\ORM\EntityManagerInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
@@ -33,6 +34,18 @@ return function (ContainerBuilder $containerBuilder) {
             $logger->pushHandler($handler);
 
             return $logger;
+        },
+        EntityManagerInterface::class => function (ContainerInterface $container) {
+            $settings = $container->get(SettingsInterface::class);
+
+            $paths = array("src");
+            $isDevMode = true;
+            $dbParams = $settings->get('database');
+
+            $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
+            $entityManager = \Doctrine\ORM\EntityManager::create($dbParams, $config);
+
+            return $entityManager;
         },
     ]);
 };

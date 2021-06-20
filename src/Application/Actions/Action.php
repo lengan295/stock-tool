@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Application\Actions;
 
 use App\Domain\DomainException\DomainRecordNotFoundException;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
@@ -33,11 +34,18 @@ abstract class Action
     protected $args;
 
     /**
-     * @param LoggerInterface $logger
+     * @var EntityManagerInterface
      */
-    public function __construct(LoggerInterface $logger)
+    protected $entityManager;
+
+    /**
+     * @param LoggerInterface $logger
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(LoggerInterface $logger, EntityManagerInterface $entityManager)
     {
         $this->logger = $logger;
+        $this->entityManager = $entityManager;
     }
 
     /**
