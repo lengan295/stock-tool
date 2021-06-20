@@ -6,10 +6,12 @@ namespace App\Infrastructure\FinfoVndSdk;
 
 use anlutro\cURL\cURL;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentDataParser;
+use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalData;
+use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalDataParser;
 use Psr\Log\LoggerInterface;
 
 class ApiClient {
-    const URL_BASE = "https://finfo-api.vndirect.com.vn/v4/";
+    const URL_BASE = "https://finfo-api.vndirect.com.vn/";
 
     /**
      * @var LoggerInterface
@@ -40,7 +42,8 @@ class ApiClient {
             CompanyCurrentDataParser::ITEM_CODE_ROAE . "," .
             CompanyCurrentDataParser::ITEM_CODE_ROAA . "," .
             CompanyCurrentDataParser::ITEM_CODE_EPS . ",";
-        $url = self::URL_BASE . "ratios/latest?filter=itemCode:" . $itemCodeList . "&where=code:" . $code . "&order=reportDate&fields=itemCode,value";
+        $url = self::URL_BASE . "v4/ratios/latest?filter=itemCode:" . $itemCodeList .
+            "&where=code:" . $code . "&order=reportDate&fields=itemCode,value";
 
         $raw_response = $this->invokeGet($url);
 
@@ -48,6 +51,21 @@ class ApiClient {
         $data = $parser->parse($raw_response);
         $data->code = $code;
 
+        $this->logger->debug(print_r($data, 1));
+
+        return $data;
+    }
+
+    public function getCompanyHistoricalData($code) {
+        $endOfThisYear = date("Y-12-31");
+        $url = self::URL_BASE . "v3/stocks/financialStatement?secCodes=" . $code .
+            "&reportTypes=ANNUAL&modelTypes=1,2,3&toDate=" . $endOfThisYear;
+        $raw_response = $this->invokeGet($url);
+
+        $parser = new CompanyHistoricalDataParser();
+        $data = $parser->parse($raw_response);
+
+        $this->logger->debug($url);
         $this->logger->debug(print_r($data, 1));
 
         return $data;
