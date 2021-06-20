@@ -15,7 +15,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=10, nullable=false)
+     * @ORM\Column(name="code", type="string", length=10, nullable=false, unique=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
@@ -24,125 +24,128 @@ class Company
     /**
      * @var string|null
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true, unique=false)
      */
     private $name;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="code_industry", type="integer", nullable=true)
+     * @ORM\Column(name="code_industry", type="integer", nullable=true, unique=false)
      */
     private $codeIndustry;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="market_cap", type="bigint", nullable=true)
+     * @ORM\Column(name="market_cap", type="bigint", nullable=true, unique=false)
      */
     private $marketCap;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="volume_10_session", type="bigint", nullable=true)
+     * @ORM\Column(name="volume_10_session", type="bigint", nullable=true, unique=false)
      */
     private $volume10Session;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="max_52_weeks", type="decimal", precision=13, scale=2, nullable=true)
+     * @ORM\Column(name="max_52_weeks", type="decimal", precision=13, scale=2, nullable=true, unique=false)
      */
     private $max52Weeks;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="min_52_weeks", type="decimal", precision=13, scale=2, nullable=true)
+     * @ORM\Column(name="min_52_weeks", type="decimal", precision=13, scale=2, nullable=true, unique=false)
      */
     private $min52Weeks;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="shares", type="bigint", nullable=true)
+     * @ORM\Column(name="shares", type="bigint", nullable=true, unique=false)
      */
     private $shares;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="free_float", type="decimal", precision=5, scale=4, nullable=true)
+     * @ORM\Column(name="free_float", type="decimal", precision=5, scale=4, nullable=true, unique=false)
      */
     private $freeFloat;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="beta", type="decimal", precision=8, scale=2, nullable=true)
+     * @ORM\Column(name="beta", type="decimal", precision=8, scale=2, nullable=true, unique=false)
      */
     private $beta;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="pe", type="decimal", precision=8, scale=2, nullable=true)
+     * @ORM\Column(name="pe", type="decimal", precision=8, scale=2, nullable=true, unique=false)
      */
     private $pe;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="pb", type="decimal", precision=8, scale=2, nullable=true)
+     * @ORM\Column(name="pb", type="decimal", precision=8, scale=2, nullable=true, unique=false)
      */
     private $pb;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="dividend_rate", type="decimal", precision=5, scale=4, nullable=true)
+     * @ORM\Column(name="dividend_rate", type="decimal", precision=5, scale=4, nullable=true, unique=false)
      */
     private $dividendRate;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="bvps", type="decimal", precision=13, scale=2, nullable=true)
+     * @ORM\Column(name="bvps", type="decimal", precision=13, scale=2, nullable=true, unique=false)
      */
     private $bvps;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="roae", type="decimal", precision=5, scale=4, nullable=true)
+     * @ORM\Column(name="roae", type="decimal", precision=5, scale=4, nullable=true, unique=false)
      */
     private $roae;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="roaa", type="decimal", precision=5, scale=4, nullable=true)
+     * @ORM\Column(name="roaa", type="decimal", precision=5, scale=4, nullable=true, unique=false)
      */
     private $roaa;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="eps", type="decimal", precision=13, scale=2, nullable=true)
+     * @ORM\Column(name="eps", type="decimal", precision=13, scale=2, nullable=true, unique=false)
      */
     private $eps;
 
-
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Domain\Company\CompanyHistoricalData", mappedBy="company")
+     */
+    private $historicalData;
 
     /**
-     * Get code.
-     *
-     * @return string
+     * Constructor
      */
-    public function getCode()
+    public function __construct()
     {
-        return $this->code;
+        $this->historicalData = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -157,6 +160,16 @@ class Company
         $this->code = $code;
 
         return $this;
+    }
+
+    /**
+     * Get code.
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 
     /**
@@ -541,5 +554,41 @@ class Company
     public function getEps()
     {
         return $this->eps;
+    }
+
+    /**
+     * Add historicalDatum.
+     *
+     * @param \App\Domain\Company\CompanyHistoricalData $historicalDatum
+     *
+     * @return Company
+     */
+    public function addHistoricalDatum(\App\Domain\Company\CompanyHistoricalData $historicalDatum)
+    {
+        $this->historicalData[] = $historicalDatum;
+
+        return $this;
+    }
+
+    /**
+     * Remove historicalDatum.
+     *
+     * @param \App\Domain\Company\CompanyHistoricalData $historicalDatum
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeHistoricalDatum(\App\Domain\Company\CompanyHistoricalData $historicalDatum)
+    {
+        return $this->historicalData->removeElement($historicalDatum);
+    }
+
+    /**
+     * Get historicalData.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHistoricalData()
+    {
+        return $this->historicalData;
     }
 }
