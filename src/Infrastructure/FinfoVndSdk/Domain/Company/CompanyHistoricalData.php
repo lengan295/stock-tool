@@ -21,7 +21,7 @@ class CompanyHistoricalData {
 
     public function __construct($companyCode, $reportType, $fiscalDate) {
         $this->companyCode = $companyCode;
-        $this->fiscalDate = $fiscalDate;
+        $this->fiscalDate = new \DateTime($fiscalDate);
         $this->reportType = $reportType;
     }
 }
