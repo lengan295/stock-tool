@@ -5,12 +5,13 @@ namespace App\Infrastructure\FinfoVndSdk;
 
 
 use anlutro\cURL\cURL;
+use App\Infrastructure\FinanceApiClient;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentDataParser;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalData;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalDataParser;
 use Psr\Log\LoggerInterface;
 
-class ApiClient {
+class ApiClient implements FinanceApiClient {
     const URL_BASE = "https://finfo-api.vndirect.com.vn/";
 
     /**
