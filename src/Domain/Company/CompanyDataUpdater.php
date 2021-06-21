@@ -17,7 +17,7 @@ class CompanyDataUpdater {
         $this->apiClient = $apiClient;
     }
 
-    public function updateCompanyData($code) {
+    public function updateCompanyData($code, $refreshHistoricalData = false) {
         $api = $this->apiClient;
         $data = $api->getCompanyCurrentData($code);
 
@@ -45,10 +45,15 @@ class CompanyDataUpdater {
         foreach ($historicalData as $reportType => $data) {
             /** @var \App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalData $datum */
             foreach ($data as $datum) {
-                $historicalDatum = $this->entityManager->getRepository(CompanyHistoricalData::class)
+                $foundHistoricalData = $this->entityManager->getRepository(CompanyHistoricalData::class)
                     ->findBy(['company' => $company, 'reportType' => $datum->reportType, 'fiscalDate' => $datum->fiscalDate]);
-                if (empty($historicalDatum)) {
+                if (empty($foundHistoricalData)) {
                     $historicalDatum = new CompanyHistoricalData();
+                } else {
+                    if (!$refreshHistoricalData) {
+                        continue;
+                    }
+                    $historicalDatum = reset($foundHistoricalData);
                 }
 
                 $historicalDatum->setAssetTotal($datum->assetTotal);
