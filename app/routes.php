@@ -18,5 +18,6 @@ return function (App $app) {
 
     $app->get('/import', \App\Application\Actions\Company\ImportAction::class);
 
+    $app->get('/analyse', \App\Application\Actions\Company\AnalyseAction::class);
 
 };

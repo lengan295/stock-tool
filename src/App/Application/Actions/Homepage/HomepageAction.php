@@ -10,6 +10,7 @@ use App\Domain\Company\Company;
 use App\Domain\Company\CompanyDataUpdater;
 use App\Domain\Company\CompanyHistoricalData;
 use App\Infrastructure\FinfoVndSdk\ApiClient;
+use App\Infrastructure\Helpers\FinanceCalculator;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class HomepageAction extends Action {
@@ -18,7 +19,11 @@ class HomepageAction extends Action {
      * {@inheritdoc}
      */
     protected function action(): Response {
-        $this->response->getBody()->write('Welcome!');
+        $c = new FinanceCalculator();
+
+        $r = $c->rate(200, 121, 2);
+
+        $this->response->getBody()->write('r = ' . $r);
         return $this->response;
     }
 }
