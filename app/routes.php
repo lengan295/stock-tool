@@ -16,6 +16,7 @@ return function (App $app) {
 
     $app->get('/', \App\Application\Actions\Homepage\HomepageAction::class);
 
-    $app->get('/import', \App\Application\Actions\Import\ImportAction::class);
+    $app->get('/import', \App\Application\Actions\Company\ImportAction::class);
+
 
 };

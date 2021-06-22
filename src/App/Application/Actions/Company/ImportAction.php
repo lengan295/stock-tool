@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Application\Actions\Import;
+namespace App\Application\Actions\Company;
 
 
 use anlutro\cURL\cURL;
