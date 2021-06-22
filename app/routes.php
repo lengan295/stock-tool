@@ -16,8 +16,6 @@ return function (App $app) {
 
     $app->get('/', \App\Application\Actions\Homepage\HomepageAction::class);
 
-    $app->group('/users', function (Group $group) {
-        $group->get('', ListUsersAction::class);
-        $group->get('/{id}', ViewUserAction::class);
-    });
+    $app->get('/import', \App\Application\Actions\Import\ImportAction::class);
+
 };

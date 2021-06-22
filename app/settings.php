@@ -8,6 +8,8 @@ use Monolog\Logger;
 
 return function (ContainerBuilder $containerBuilder) {
 
+    ini_set('max_execution_time', '0');
+
     // Global Settings Object
     $containerBuilder->addDefinitions([
         SettingsInterface::class => function () {
