@@ -91,3 +91,4 @@
 # );
 
 # UPDATE company SET code_industry = '8600' where 1;
+UPDATE company SET code_industry = '2357' where code_industry is NULL;
