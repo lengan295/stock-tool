@@ -18,12 +18,34 @@ class AnalyseAction extends \App\Application\Actions\Action {
      */
     protected function action(): Response {
         $companyRepo = $this->entityManager->getRepository(Company::class);
+
+//        /** @var Company $company */
+//        $company = $companyRepo->find('CRE');
+//        if (!empty($existing = $company->getAnalysing4m())) {
+//            $this->entityManager->remove($existing);
+//        }
+//
+//        $analyser = new CompanyAnalyser(new FinanceCalculator());
+//        $analysing = $analyser->process($company);
+//
+//        $company->setAnalysing4m($analysing);
+//        $this->entityManager->persist($analysing);
+//        $this->entityManager->flush();
+
         $companies = $companyRepo->findAll();
         $analyser = new CompanyAnalyser(new FinanceCalculator());
 
         /** @var Company $company */
         foreach ($companies as $company) {
-            $analyser->process($company);
+            if (!empty($existing = $company->getAnalysing4m())) {
+                $this->entityManager->remove($existing);
+            }
+
+            $analysing = $analyser->process($company);
+            if (empty($analysing)) continue;
+
+            $company->setAnalysing4m($analysing);
+            $this->entityManager->persist($analysing);
             $this->entityManager->flush();
         }
 

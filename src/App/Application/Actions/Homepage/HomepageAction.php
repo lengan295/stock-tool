@@ -21,7 +21,7 @@ class HomepageAction extends Action {
     protected function action(): Response {
         $c = new FinanceCalculator();
 
-        $r = $c->rate(200, 121, 2);
+        $r = $c->futureValue(100, -0.10, 2);
 
         $this->response->getBody()->write('r = ' . $r);
         return $this->response;

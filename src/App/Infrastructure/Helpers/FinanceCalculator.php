@@ -24,4 +24,8 @@ class FinanceCalculator {
 
         return $roic;
     }
+
+    public function futureValue(?float $initValue, ?float $rate, int $periods) {
+        return $initValue * ((1 + $rate) ** $periods);
+    }
 }
