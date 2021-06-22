@@ -78,6 +78,13 @@ class CompanyAnalysing4m
     private $marginOfSafe;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(name="investment_years", type="integer", nullable=true)
+     */
+    private $investmentYears;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="future_retail_value", type="decimal", precision=13, scale=2, nullable=true)
@@ -499,5 +506,29 @@ class CompanyAnalysing4m
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set investmentYears.
+     *
+     * @param int|null $investmentYears
+     *
+     * @return CompanyAnalysing4m
+     */
+    public function setInvestmentYears($investmentYears = null)
+    {
+        $this->investmentYears = $investmentYears;
+
+        return $this;
+    }
+
+    /**
+     * Get investmentYears.
+     *
+     * @return int|null
+     */
+    public function getInvestmentYears()
+    {
+        return $this->investmentYears;
     }
 }
