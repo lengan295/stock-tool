@@ -15,7 +15,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=10, nullable=false, unique=false)
+     * @ORM\Column(name="code", type="string", length=10, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
@@ -24,112 +24,112 @@ class Company
     /**
      * @var string|null
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true, unique=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="code_industry", type="integer", nullable=true, unique=false)
+     * @ORM\Column(name="code_industry", type="integer", nullable=true)
      */
     private $codeIndustry;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="market_cap", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="market_cap", type="bigint", nullable=true)
      */
     private $marketCap;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="volume_10_session", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="volume_10_session", type="bigint", nullable=true)
      */
     private $volume10Session;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="max_52_weeks", type="decimal", precision=13, scale=2, nullable=true, unique=false)
+     * @ORM\Column(name="max_52_weeks", type="decimal", precision=13, scale=2, nullable=true)
      */
     private $max52Weeks;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="min_52_weeks", type="decimal", precision=13, scale=2, nullable=true, unique=false)
+     * @ORM\Column(name="min_52_weeks", type="decimal", precision=13, scale=2, nullable=true)
      */
     private $min52Weeks;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="shares", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="shares", type="bigint", nullable=true)
      */
     private $shares;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="free_float", type="decimal", precision=5, scale=4, nullable=true, unique=false)
+     * @ORM\Column(name="free_float", type="decimal", precision=8, scale=4, nullable=true)
      */
     private $freeFloat;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="beta", type="decimal", precision=8, scale=2, nullable=true, unique=false)
+     * @ORM\Column(name="beta", type="decimal", precision=8, scale=2, nullable=true)
      */
     private $beta;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="pe", type="decimal", precision=8, scale=2, nullable=true, unique=false)
+     * @ORM\Column(name="pe", type="decimal", precision=8, scale=2, nullable=true)
      */
     private $pe;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="pb", type="decimal", precision=8, scale=2, nullable=true, unique=false)
+     * @ORM\Column(name="pb", type="decimal", precision=8, scale=2, nullable=true)
      */
     private $pb;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="dividend_rate", type="decimal", precision=5, scale=4, nullable=true, unique=false)
+     * @ORM\Column(name="dividend_rate", type="decimal", precision=8, scale=4, nullable=true)
      */
     private $dividendRate;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="bvps", type="decimal", precision=13, scale=2, nullable=true, unique=false)
+     * @ORM\Column(name="bvps", type="decimal", precision=13, scale=2, nullable=true)
      */
     private $bvps;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="roae", type="decimal", precision=5, scale=4, nullable=true, unique=false)
+     * @ORM\Column(name="roae", type="decimal", precision=8, scale=4, nullable=true)
      */
     private $roae;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="roaa", type="decimal", precision=5, scale=4, nullable=true, unique=false)
+     * @ORM\Column(name="roaa", type="decimal", precision=8, scale=4, nullable=true)
      */
     private $roaa;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="eps", type="decimal", precision=13, scale=2, nullable=true, unique=false)
+     * @ORM\Column(name="eps", type="decimal", precision=13, scale=2, nullable=true)
      */
     private $eps;
 
@@ -139,6 +139,11 @@ class Company
      * @ORM\OneToMany(targetEntity="App\Domain\Company\CompanyHistoricalData", mappedBy="company")
      */
     private $historicalData;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Domain\Company\CompanyAnalysing4m", mappedBy="company")
+     */
+    private $analysing4m;
 
     /**
      * Constructor
@@ -590,5 +595,29 @@ class Company
     public function getHistoricalData()
     {
         return $this->historicalData;
+    }
+
+    /**
+     * Set analysing4m.
+     *
+     * @param \App\Domain\Company\CompanyAnalysing4m|null $analysing4m
+     *
+     * @return Company
+     */
+    public function setAnalysing4m(\App\Domain\Company\CompanyAnalysing4m $analysing4m = null)
+    {
+        $this->analysing4m = $analysing4m;
+
+        return $this;
+    }
+
+    /**
+     * Get analysing4m.
+     *
+     * @return \App\Domain\Company\CompanyAnalysing4m|null
+     */
+    public function getAnalysing4m()
+    {
+        return $this->analysing4m;
     }
 }

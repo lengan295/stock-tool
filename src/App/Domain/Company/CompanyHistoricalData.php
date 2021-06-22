@@ -15,7 +15,7 @@ class CompanyHistoricalData
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="bigint", nullable=false, unique=false)
+     * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,86 +24,121 @@ class CompanyHistoricalData
     /**
      * @var string|null
      *
-     * @ORM\Column(name="report_type", type="string", length=0, nullable=true, unique=false)
+     * @ORM\Column(name="report_type", type="string", length=0, nullable=true)
      */
     private $reportType;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="fiscal_date", type="datetime", nullable=true, unique=false)
+     * @ORM\Column(name="fiscal_date", type="datetime", nullable=true)
      */
     private $fiscalDate;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="asset_total", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="asset_total", type="bigint", nullable=true)
      */
     private $assetTotal;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="short_term_dept", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="short_term_dept", type="bigint", nullable=true)
      */
     private $shortTermDept;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="long_term_dept", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="long_term_dept", type="bigint", nullable=true)
      */
     private $longTermDept;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="equity", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="equity", type="bigint", nullable=true)
      */
     private $equity;
 
     /**
-     * @var int|null
+     * @var string|null
      *
-     * @ORM\Column(name="net_income", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="equity_yoy", type="decimal", precision=8, scale=4, nullable=true)
      */
-    private $netIncome;
+    private $equityYoy;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="gross_profit", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="net_income", type="bigint", nullable=true)
+     */
+    private $netIncome;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="net_income_yoy", type="decimal", precision=8, scale=4, nullable=true)
+     */
+    private $netIncomeYoy;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="gross_profit", type="bigint", nullable=true)
      */
     private $grossProfit;
 
     /**
      * @var int|null
      *
-     * @ORM\Column(name="nopat", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="nopat", type="bigint", nullable=true)
      */
     private $nopat;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="nopat_yoy", type="decimal", precision=8, scale=4, nullable=true)
+     */
+    private $nopatYoy;
+
+    /**
      * @var int|null
      *
-     * @ORM\Column(name="operating_cash_flow", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="operating_cash_flow", type="bigint", nullable=true)
      */
     private $operatingCashFlow;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="operating_cash_flow_yoy", type="decimal", precision=8, scale=4, nullable=true)
+     */
+    private $operatingCashFlowYoy;
+
+    /**
      * @var int|null
      *
-     * @ORM\Column(name="cash_and_cash_equivalents", type="bigint", nullable=true, unique=false)
+     * @ORM\Column(name="cash_and_cash_equivalents", type="bigint", nullable=true)
      */
     private $cashAndCashEquivalents;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="roic", type="decimal", precision=8, scale=4, nullable=true)
+     */
+    private $roic;
+
+    /**
      * @var \App\Domain\Company\Company
      *
-     * @ORM\ManyToOne(targetEntity="App\Domain\Company\Company", inversedBy="historicalData")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Company\Company")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="code", referencedColumnName="code", nullable=true)
+     *   @ORM\JoinColumn(name="code", referencedColumnName="code")
      * })
      */
     private $company;
@@ -405,5 +440,125 @@ class CompanyHistoricalData
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set equityYoy.
+     *
+     * @param string|null $equityYoy
+     *
+     * @return CompanyHistoricalData
+     */
+    public function setEquityYoy($equityYoy = null)
+    {
+        $this->equityYoy = $equityYoy;
+
+        return $this;
+    }
+
+    /**
+     * Get equityYoy.
+     *
+     * @return string|null
+     */
+    public function getEquityYoy()
+    {
+        return $this->equityYoy;
+    }
+
+    /**
+     * Set netIncomeYoy.
+     *
+     * @param string|null $netIncomeYoy
+     *
+     * @return CompanyHistoricalData
+     */
+    public function setNetIncomeYoy($netIncomeYoy = null)
+    {
+        $this->netIncomeYoy = $netIncomeYoy;
+
+        return $this;
+    }
+
+    /**
+     * Get netIncomeYoy.
+     *
+     * @return string|null
+     */
+    public function getNetIncomeYoy()
+    {
+        return $this->netIncomeYoy;
+    }
+
+    /**
+     * Set nopatYoy.
+     *
+     * @param string|null $nopatYoy
+     *
+     * @return CompanyHistoricalData
+     */
+    public function setNopatYoy($nopatYoy = null)
+    {
+        $this->nopatYoy = $nopatYoy;
+
+        return $this;
+    }
+
+    /**
+     * Get nopatYoy.
+     *
+     * @return string|null
+     */
+    public function getNopatYoy()
+    {
+        return $this->nopatYoy;
+    }
+
+    /**
+     * Set operatingCashFlowYoy.
+     *
+     * @param string|null $operatingCashFlowYoy
+     *
+     * @return CompanyHistoricalData
+     */
+    public function setOperatingCashFlowYoy($operatingCashFlowYoy = null)
+    {
+        $this->operatingCashFlowYoy = $operatingCashFlowYoy;
+
+        return $this;
+    }
+
+    /**
+     * Get operatingCashFlowYoy.
+     *
+     * @return string|null
+     */
+    public function getOperatingCashFlowYoy()
+    {
+        return $this->operatingCashFlowYoy;
+    }
+
+    /**
+     * Set roic.
+     *
+     * @param string|null $roic
+     *
+     * @return CompanyHistoricalData
+     */
+    public function setRoic($roic = null)
+    {
+        $this->roic = $roic;
+
+        return $this;
+    }
+
+    /**
+     * Get roic.
+     *
+     * @return string|null
+     */
+    public function getRoic()
+    {
+        return $this->roic;
     }
 }
