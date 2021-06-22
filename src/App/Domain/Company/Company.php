@@ -134,6 +134,20 @@ class Company
     private $eps;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="stock_price", type="decimal", precision=13, scale=2, nullable=true)
+     */
+    private $stockPrice;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="price_update_at", type="datetime", nullable=true)
+     */
+    private $priceUpdateAt;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="App\Domain\Company\CompanyHistoricalData", mappedBy="company")
@@ -619,5 +633,53 @@ class Company
     public function getAnalysing4m()
     {
         return $this->analysing4m;
+    }
+
+    /**
+     * Set stockPrice.
+     *
+     * @param string|null $stockPrice
+     *
+     * @return Company
+     */
+    public function setStockPrice($stockPrice = null)
+    {
+        $this->stockPrice = $stockPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get stockPrice.
+     *
+     * @return string|null
+     */
+    public function getStockPrice()
+    {
+        return $this->stockPrice;
+    }
+
+    /**
+     * Set priceUpdateAt.
+     *
+     * @param \DateTime|null $priceUpdateAt
+     *
+     * @return Company
+     */
+    public function setPriceUpdateAt($priceUpdateAt = null)
+    {
+        $this->priceUpdateAt = $priceUpdateAt;
+
+        return $this;
+    }
+
+    /**
+     * Get priceUpdateAt.
+     *
+     * @return \DateTime|null
+     */
+    public function getPriceUpdateAt()
+    {
+        return $this->priceUpdateAt;
     }
 }

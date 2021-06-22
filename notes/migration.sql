@@ -93,4 +93,8 @@
 # UPDATE company SET code_industry = '8600' where 1;
 # UPDATE company SET code_industry = '2357' where code_industry is NULL;
 
-ALTER TABLE company_analysing_4m ADD COLUMN investment_years int AFTER margin_of_safe;
+# ALTER TABLE company_analysing_4m ADD COLUMN investment_years int AFTER margin_of_safe;
+
+ALTER TABLE company
+    ADD COLUMN stock_price     decimal(13, 2),
+    ADD COLUMN price_update_at datetime;
