@@ -19,7 +19,7 @@ class UpdatePriceAction extends \App\Application\Actions\Action {
         $companyRepo = $this->entityManager->getRepository(Company::class);
 
         $companies = $companyRepo->findAll();
-        $apiClient = new DchartApiClient($this->logger, new cURL());
+        $apiClient = new DchartApiClient($this->logger, new cURL(), $this->settings);
         $updater = new StockPriceUpdater($this->entityManager, $apiClient);
 
         /** @var Company $company */

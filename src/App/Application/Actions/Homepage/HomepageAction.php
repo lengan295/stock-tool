@@ -20,9 +20,11 @@ class HomepageAction extends Action {
      * {@inheritdoc}
      */
     protected function action(): Response {
-        $api = new DchartApiClient($this->logger, new cURL());
-        $r = $api->getPrice('VHM');
 
+        $t = new \DateTime('@1624422421');
+//        $t->setTimezone(new \DateTimeZone('Asia/Ho_Chi_Minh'));
+        $t->setTimezone(new \DateTimeZone($this->settings->get('timezone')));
+        $r = $t->format('Y-m-d H:i:sP');
         $this->response->getBody()->write('r = ' . print_r($r,1));
         return $this->response;
     }

@@ -5,6 +5,7 @@ namespace App\Infrastructure\DchartApiSdk;
 
 
 use anlutro\cURL\cURL;
+use App\Application\Settings\SettingsInterface;
 use App\Infrastructure\DchartApiSdk\Domain\StockPrice\StockPrice;
 use App\Infrastructure\DchartApiSdk\Domain\StockPrice\StockPriceParser;
 use App\Infrastructure\StockPriceApiClient;
@@ -21,16 +22,22 @@ class DchartApiClient implements StockPriceApiClient {
     /** @var cURL */
     private $curl;
 
-    public function __construct(LoggerInterface $logger, $curl) {
+    /**
+     * @var SettingsInterface
+     */
+    private $settings;
+
+    public function __construct(LoggerInterface $logger, $curl, SettingsInterface $settings) {
         $this->logger = $logger;
         $this->curl = $curl;
+        $this->settings = $settings;
     }
 
     public function getPrice($code) : StockPrice {
         $url = self::URL_BASE . "dchart/history?resolution=D&symbol=$code";
 
         $response = $this->invokeGet($url);
-        $parser = new StockPriceParser($this->logger);
+        $parser = new StockPriceParser($this->logger, $this->settings);
         $stockPrice = $parser->parse($response);
 
         return $stockPrice;

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Application\Actions;
 
+use App\Application\Settings\SettingsInterface;
 use App\Domain\DomainException\DomainRecordNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -37,15 +38,19 @@ abstract class Action
      * @var EntityManagerInterface
      */
     protected $entityManager;
-
     /**
-     * @param LoggerInterface $logger
-     * @param EntityManagerInterface $entityManager
+     * @var SettingsInterface
      */
-    public function __construct(LoggerInterface $logger, EntityManagerInterface $entityManager)
-    {
+    protected $settings;
+
+    public function __construct(
+        LoggerInterface $logger,
+        EntityManagerInterface $entityManager,
+        SettingsInterface $settings
+    ) {
         $this->logger = $logger;
         $this->entityManager = $entityManager;
+        $this->settings = $settings;
     }
 
     /**
