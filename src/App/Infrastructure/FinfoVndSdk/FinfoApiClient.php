@@ -9,6 +9,8 @@ use App\Infrastructure\FinanceApiClient;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentData;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentDataParser;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalDataParser;
+use App\Infrastructure\FinfoVndSdk\Domain\Industry\Industry;
+use App\Infrastructure\FinfoVndSdk\Domain\Industry\IndustryParser;
 use Psr\Log\LoggerInterface;
 
 class FinfoApiClient implements FinanceApiClient {
@@ -70,6 +72,13 @@ class FinfoApiClient implements FinanceApiClient {
         $this->logger->debug(print_r($data, 1));
 
         return $data;
+    }
+
+    public function getIndustry(string $industryCode): Industry {
+        $url = self::URL_BASE . "v4/industry_classification?q=industryCode:$industryCode";
+        $response = $this->invokeGet($url);
+        $parser = new IndustryParser();
+        return $parser->parse($response);
     }
 
     private function invokeGet(string $url) {

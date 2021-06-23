@@ -6,6 +6,7 @@ namespace App\Infrastructure;
 
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentData;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalData;
+use App\Infrastructure\FinfoVndSdk\Domain\Industry\Industry;
 
 interface FinanceApiClient {
 
@@ -17,4 +18,5 @@ interface FinanceApiClient {
      */
     public function getCompanyHistoricalData(string $code) : array;
 
+    public function getIndustry(string $industryCode) : Industry;
 }
