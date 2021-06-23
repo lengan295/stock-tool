@@ -31,8 +31,8 @@ class UpdatePriceAction extends \App\Application\Actions\Action {
         /** @var Company $company */
         foreach ($companies as $company) {
             $updater->updateStockPrice($company);
+            $this->entityManager->flush();
         }
-        $this->entityManager->flush();
 
         $this->response->getBody()->write('Update done!');
         return $this->response;
