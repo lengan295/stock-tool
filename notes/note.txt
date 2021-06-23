@@ -27,6 +27,7 @@ https://finfo-api.vndirect.com.vn/v4/personnel?q=code:VHM~locale:VN&sort=display
 
 https://finfo-api.vndirect.com.vn/v4/ratios/latest?filter=itemCode:52002,52001,53007,&where=code:VHM~reportDate:gt:2021-02-04&order=reportDate&fields=itemCode,value
 
+https://dchart-api.vndirect.com.vn/dchart/history?resolution=D&symbol=CRE&from=1623861385
 
 php vendor/bin/doctrine orm:convert-mapping -f --from-database --namespace=App\Domain\Company\ annotation src/
 php vendor/bin/doctrine orm:generate-entities src/

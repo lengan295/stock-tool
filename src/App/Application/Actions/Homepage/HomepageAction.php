@@ -9,6 +9,7 @@ use App\Application\Actions\Action;
 use App\Domain\Company\Company;
 use App\Domain\Company\CompanyDataUpdater;
 use App\Domain\Company\CompanyHistoricalData;
+use App\Infrastructure\DchartApiSdk\DchartApiClient;
 use App\Infrastructure\FinfoVndSdk\ApiClient;
 use App\Infrastructure\Helpers\FinanceCalculator;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -19,11 +20,10 @@ class HomepageAction extends Action {
      * {@inheritdoc}
      */
     protected function action(): Response {
-        $c = new FinanceCalculator();
+        $api = new DchartApiClient($this->logger, new cURL());
+        $r = $api->getPrice('VHM');
 
-        $r = $c->futureValue(100, -0.10, 2);
-
-        $this->response->getBody()->write('r = ' . $r);
+        $this->response->getBody()->write('r = ' . print_r($r,1));
         return $this->response;
     }
 }
