@@ -20,6 +20,7 @@ class CompanyAnalyser {
     }
 
     public function process(Company $company, $beginYear = null) {
+        /** @var CompanyHistoricalData[] $historicalData */
         $historicalData = $this->indexHistoricalDataByYear($company->getHistoricalData());
         if (count($historicalData) < 2) {
             return null;
@@ -50,6 +51,9 @@ class CompanyAnalyser {
         if (!isset($beginYear) || $beginYear < $minYear) {
             $beginYear = $minYear;
         }
+
+        $roic = $historicalData[$maxYear]->getRoic();
+        $company->setRoic($roic);
 
         return $this->process4m($company, $historicalData, $beginYear, $maxYear);
     }

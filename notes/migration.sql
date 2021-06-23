@@ -95,6 +95,9 @@
 
 # ALTER TABLE company_analysing_4m ADD COLUMN investment_years int AFTER margin_of_safe;
 
-ALTER TABLE company
-    ADD COLUMN stock_price     decimal(13, 2),
-    ADD COLUMN price_update_at datetime;
+# ALTER TABLE company
+#     ADD COLUMN stock_price     decimal(13, 2),
+#     ADD COLUMN price_update_at datetime;
+
+# ALTER TABLE company
+#     ADD COLUMN roic     decimal(8, 4) after eps;

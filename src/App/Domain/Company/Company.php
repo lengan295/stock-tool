@@ -136,6 +136,13 @@ class Company
     /**
      * @var string|null
      *
+     * @ORM\Column(name="roic", type="decimal", precision=8, scale=4, nullable=true)
+     */
+    private $roic;
+
+    /**
+     * @var string|null
+     *
      * @ORM\Column(name="stock_price", type="decimal", precision=13, scale=2, nullable=true)
      */
     private $stockPrice;
@@ -681,5 +688,29 @@ class Company
     public function getPriceUpdateAt()
     {
         return $this->priceUpdateAt;
+    }
+
+    /**
+     * Set roic.
+     *
+     * @param string|null $roic
+     *
+     * @return Company
+     */
+    public function setRoic($roic = null)
+    {
+        $this->roic = $roic;
+
+        return $this;
+    }
+
+    /**
+     * Get roic.
+     *
+     * @return string|null
+     */
+    public function getRoic()
+    {
+        return $this->roic;
     }
 }
