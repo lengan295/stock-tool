@@ -5,6 +5,7 @@ namespace App\Infrastructure\DchartApiSdk;
 
 
 use anlutro\cURL\cURL;
+use App\Infrastructure\DchartApiSdk\Domain\StockPrice\StockPrice;
 use App\Infrastructure\DchartApiSdk\Domain\StockPrice\StockPriceParser;
 use App\Infrastructure\StockPriceApiClient;
 use Psr\Log\LoggerInterface;
@@ -25,9 +26,8 @@ class DchartApiClient implements StockPriceApiClient {
         $this->curl = $curl;
     }
 
-    public function getPrice($code) {
-        $oneWeekAgo = strtotime("-1 week");
-        $url = self::URL_BASE . "dchart/history?resolution=D&symbol=$code&from=$oneWeekAgo";
+    public function getPrice($code) : StockPrice {
+        $url = self::URL_BASE . "dchart/history?resolution=D&symbol=$code";
 
         $response = $this->invokeGet($url);
         $parser = new StockPriceParser($this->logger);

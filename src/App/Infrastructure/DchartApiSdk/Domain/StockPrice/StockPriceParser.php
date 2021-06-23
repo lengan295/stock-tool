@@ -15,17 +15,17 @@ class StockPriceParser {
     }
 
     public function parse($response) : StockPrice {
+        $stockPrice = new StockPrice();
         if (empty($response["c"]) || empty($response["t"])) {
             $errorMsg = "API ERROR : 'c' or 't' not present";
-            $this->logger->error($errorMsg, ["response" => $response]);
-            throw new DchartApiException($errorMsg);
+            $this->logger->warning($errorMsg, ["response" => $response]);
+            return $stockPrice;
         }
 
         $price = end($response["c"]) * 1000;
         $timestamp = end($response["t"]);
         $time = new \DateTime('@' . $timestamp);
 
-        $stockPrice = new StockPrice();
         $stockPrice->price = $price;
         $stockPrice->time = $time;
         return $stockPrice;

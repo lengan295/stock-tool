@@ -20,4 +20,6 @@ return function (App $app) {
 
     $app->get('/analyse', \App\Application\Actions\Company\AnalyseAction::class);
 
+    $app->get('/price', \App\Application\Actions\Company\UpdatePriceAction::class);
+
 };
