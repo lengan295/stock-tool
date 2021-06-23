@@ -18,8 +18,8 @@ return function (App $app) {
 
     $app->get('/import/{industryCode}', \App\Application\Actions\Company\ImportAction::class);
 
-    $app->get('/analyse', \App\Application\Actions\Company\AnalyseAction::class);
+    $app->get('/analyse[/{industryCode}]', \App\Application\Actions\Company\AnalyseAction::class);
 
-    $app->get('/price', \App\Application\Actions\Company\UpdatePriceAction::class);
+    $app->get('/price[/{industryCode}]', \App\Application\Actions\Company\UpdatePriceAction::class);
 
 };

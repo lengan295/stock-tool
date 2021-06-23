@@ -19,20 +19,13 @@ class AnalyseAction extends \App\Application\Actions\Action {
     protected function action(): Response {
         $companyRepo = $this->entityManager->getRepository(Company::class);
 
-//        /** @var Company $company */
-//        $company = $companyRepo->find('CRE');
-//        if (!empty($existing = $company->getAnalysing4m())) {
-//            $this->entityManager->remove($existing);
-//        }
-//
-//        $analyser = new CompanyAnalyser(new FinanceCalculator());
-//        $analysing = $analyser->process($company);
-//
-//        $company->setAnalysing4m($analysing);
-//        $this->entityManager->persist($analysing);
-//        $this->entityManager->flush();
+        if ($this->hasArg("industryCode")) {
+            $industryCode = $this->resolveArg("industryCode");
+            $companies = $companyRepo->findBy(["codeIndustry" => $industryCode]);
+        } else {
+            $companies = $companyRepo->findAll();
+        }
 
-        $companies = $companyRepo->findAll();
         $analyser = new CompanyAnalyser(new FinanceCalculator());
 
         /** @var Company $company */

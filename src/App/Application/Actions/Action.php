@@ -96,6 +96,10 @@ abstract class Action
         return $input;
     }
 
+    protected function hasArg(string $name) : bool {
+        return isset($this->args[$name]);
+    }
+
     /**
      * @param  string $name
      * @return mixed

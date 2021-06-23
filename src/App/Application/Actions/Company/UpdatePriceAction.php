@@ -18,7 +18,13 @@ class UpdatePriceAction extends \App\Application\Actions\Action {
     protected function action(): Response {
         $companyRepo = $this->entityManager->getRepository(Company::class);
 
-        $companies = $companyRepo->findAll();
+        if ($this->hasArg("industryCode")) {
+            $industryCode = $this->resolveArg("industryCode");
+            $companies = $companyRepo->findBy(["codeIndustry" => $industryCode]);
+        } else {
+            $companies = $companyRepo->findAll();
+        }
+
         $apiClient = new DchartApiClient($this->logger, new cURL(), $this->settings);
         $updater = new StockPriceUpdater($this->entityManager, $apiClient);
 
