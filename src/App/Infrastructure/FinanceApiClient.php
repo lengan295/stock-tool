@@ -4,10 +4,17 @@
 namespace App\Infrastructure;
 
 
+use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentData;
+use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalData;
+
 interface FinanceApiClient {
 
-    public function getCompanyCurrentData($code);
+    public function getCompanyCurrentData($code) : CompanyCurrentData ;
 
-    public function getCompanyHistoricalData($code);
+    /**
+     * @param string $code
+     * @return CompanyHistoricalData[]
+     */
+    public function getCompanyHistoricalData(string $code) : array;
 
 }

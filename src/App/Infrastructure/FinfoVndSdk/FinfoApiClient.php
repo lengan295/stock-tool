@@ -6,12 +6,12 @@ namespace App\Infrastructure\FinfoVndSdk;
 
 use anlutro\cURL\cURL;
 use App\Infrastructure\FinanceApiClient;
+use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentData;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyCurrentDataParser;
-use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalData;
 use App\Infrastructure\FinfoVndSdk\Domain\Company\CompanyHistoricalDataParser;
 use Psr\Log\LoggerInterface;
 
-class ApiClient implements FinanceApiClient {
+class FinfoApiClient implements FinanceApiClient {
     const URL_BASE = "https://finfo-api.vndirect.com.vn/";
 
     /**
@@ -27,7 +27,7 @@ class ApiClient implements FinanceApiClient {
         $this->curl = $curl;
     }
 
-    public function getCompanyCurrentData($code) {
+    public function getCompanyCurrentData($code) : CompanyCurrentData {
         $itemCodeList =
             CompanyCurrentDataParser::ITEM_CODE_MARKET_CAP . "," .
             CompanyCurrentDataParser::ITEM_CODE_VOLUME_10_SESSION . "," .
@@ -57,7 +57,7 @@ class ApiClient implements FinanceApiClient {
         return $data;
     }
 
-    public function getCompanyHistoricalData($code) {
+    public function getCompanyHistoricalData(string $code) : array {
         $endOfThisYear = date("Y-12-31");
         $url = self::URL_BASE . "v3/stocks/financialStatement?secCodes=" . $code .
             "&reportTypes=ANNUAL&modelTypes=1,2,3&toDate=" . $endOfThisYear;
@@ -78,7 +78,7 @@ class ApiClient implements FinanceApiClient {
 
         if ($response->statusCode != 200) {
             $this->logger->error(self::class . ":" . __FUNCTION__, (array)$body);
-            throw new ApiException('API error (' . $body["error"] . ") : " . $body["message"]);
+            throw new FinfoApiException('API error (' . $body["error"] . ") : " . $body["message"]);
         }
 
         return $body;

@@ -4,6 +4,6 @@
 namespace App\Infrastructure\FinfoVndSdk;
 
 
-class ApiException extends \Exception {
+class FinfoApiException extends \Exception {
 
 }

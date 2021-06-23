@@ -10,7 +10,7 @@ use App\Domain\Company\Company;
 use App\Domain\Company\CompanyDataUpdater;
 use App\Domain\Company\CompanyHistoricalData;
 use App\Infrastructure\DchartApiSdk\DchartApiClient;
-use App\Infrastructure\FinfoVndSdk\ApiClient;
+use App\Infrastructure\FinfoVndSdk\FinfoApiClient;
 use App\Infrastructure\Helpers\FinanceCalculator;
 use Psr\Http\Message\ResponseInterface as Response;
 
