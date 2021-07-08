@@ -13,11 +13,13 @@ https://finfo-api.vndirect.com.vn/v3/stocks/financialStatement?secCodes=VHM&repo
 current data
 https://finfo-api.vndirect.com.vn/v4/ratios/latest?filter=itemCode:51003,51016,51001,51002,51004,57066,51007,51006,51012,51033,51035,52002,52001,53007,&where=code:VHM&order=reportDate&fields=itemCode,value
 
-https://finfo-api.vndirect.com.vn/v4/industry_classification?q=codeList:VHM~industryLevel:2,3
+https://finfo-api.vndirect.com.vn/v4/industry_classification?q=codeList:VHM~industryLevel:2,3,4
 {"data":[{"industryCode":"8600","industryLevel":"2","higherLevelCode":"8000","englishName":"Real Estate","vietnameseName":"Bất động sản","totalCount":125.0,"codeList":"HDG,E29,TN1,FTI,KOS,VRE,TIP,TCH,HGR,TID,BCM,HPI,EIN,HD2,LDG,HGC,AGG,SZB,HD3,PWA,ILB,HPX,NRC,VPI,SNZ,CER,HTT,BAX,SID,PNT,NVL,HU6,HD8,CRE,HIZ,PLA,HRB,LEC,BDP,HBI,LAI,BVL,HD6,SIP,FIR,DCH,IDC,DTI,SGR,VHM,MH3,NTC,BII,SII,NHN,FLC,FIT,NLG,CEO,HAR,VNN,CCL,DIH,CIG,NDN,D11,SDI,HPR,C21,FDC,ASM,DXG,TIX,CSC,HDC,ITC,SDU,LGL,VPH,VNI,D2D,DIG,BCI,NBB,HAG,SZL,VIC,RCL,NTL,KBC,KHA,CII,UNI,SJS,TDH,ITA,PXL,PFL,SCR,KAC,HQC,TIG,OCH,IDJ,QCG,VRC,DRH,STL,CLG,PDR,PFV,DTA,PVR,OGC,VCR,NTB,DLR,IDV,TNT,NVT,PVL,PPI,NVN,LHG,KDH"},{"industryCode":"8630","industryLevel":"3","higherLevelCode":"8600","englishName":"Real Estate Investment & Services","vietnameseName":"Dịch vụ Đầu tư Bất Động Sản","totalCount":124.0,"codeList":"HDG,E29,TN1,FTI,KOS,VRE,TCH,HGR,TID,BCM,HPI,EIN,HD2,LDG,HGC,AGG,SZB,HD3,PWA,ILB,HPX,NRC,VPI,SNZ,CER,HTT,BAX,SID,PNT,NVL,HU6,HD8,CRE,HIZ,PLA,HRB,LEC,BDP,HBI,LAI,BVL,HD6,SIP,FIR,DCH,IDC,DTI,SGR,VHM,MH3,NTC,BII,SII,NHN,FLC,FIT,NLG,CEO,HAR,VNN,CCL,DIH,CIG,NDN,D11,SDI,HPR,C21,FDC,ASM,DXG,TIX,CSC,HDC,ITC,SDU,LGL,VPH,VNI,D2D,DIG,BCI,NBB,HAG,SZL,VIC,RCL,NTL,KBC,KHA,CII,UNI,SJS,TDH,ITA,PXL,PFL,SCR,KAC,HQC,TIG,OCH,IDJ,QCG,VRC,DRH,STL,CLG,PDR,PFV,DTA,PVR,OGC,VCR,NTB,DLR,IDV,TNT,NVT,PVL,PPI,NVN,LHG,KDH"}],"currentPage":1,"size":20,"totalElements":2,"totalPages":1}
 8600 : BDS
 2357 : xay dung cong trinh
 3763 : Đồ may mặc, trang sức, phụ kiện
+3500 : thực phẩm đồ uống
+
 https://finfo-api.vndirect.com.vn/v4/industry_classification?q=industryCode:8600
 
 https://finfo-api.vndirect.com.vn/v4/industry_classification?page=8
