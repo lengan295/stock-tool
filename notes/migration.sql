@@ -93,6 +93,7 @@
 # UPDATE company SET code_industry = '8600' where 1;
 # UPDATE company SET code_industry = '2357' where code_industry is NULL;
 # UPDATE company SET code_industry = '3763' where code_industry is NULL;
+# UPDATE company SET code_industry = '3500' where code_industry is NULL;
 
 # ALTER TABLE company_analysing_4m ADD COLUMN investment_years int AFTER margin_of_safe;
 
@@ -102,3 +103,7 @@
 
 # ALTER TABLE company
 #     ADD COLUMN roic     decimal(8, 4) after eps;
+
+ALTER TABLE company_analysing_4m
+    ADD COLUMN begin_year int AFTER code,
+    ADD COLUMN end_year int AFTER begin_year;

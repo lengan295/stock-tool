@@ -115,6 +115,8 @@ class CompanyAnalyser {
 
         $analysing = new CompanyAnalysing4m();
         $analysing->setCompany($company);
+        $analysing->setBeginYear($beginYear);
+        $analysing->setEndYear($endYear);
         $analysing->setEquityGrowRate($equityGrowRate);
         $analysing->setNetIncomeGrowRate($netIncomeGrowRate);
         $analysing->setNopatGrowRate($nopatGrowRate);

@@ -22,6 +22,20 @@ class CompanyAnalysing4m
     private $id;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(name="begin_year", type="integer", nullable=true)
+     */
+    private $beginYear;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="end_year", type="integer", nullable=true)
+     */
+    private $endYear;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="equity_grow_rate", type="decimal", precision=8, scale=4, nullable=true)
@@ -530,5 +544,53 @@ class CompanyAnalysing4m
     public function getInvestmentYears()
     {
         return $this->investmentYears;
+    }
+
+    /**
+     * Set beginYear.
+     *
+     * @param int|null $beginYear
+     *
+     * @return CompanyAnalysing4m
+     */
+    public function setBeginYear($beginYear = null)
+    {
+        $this->beginYear = $beginYear;
+
+        return $this;
+    }
+
+    /**
+     * Get beginYear.
+     *
+     * @return int|null
+     */
+    public function getBeginYear()
+    {
+        return $this->beginYear;
+    }
+
+    /**
+     * Set endYear.
+     *
+     * @param int|null $endYear
+     *
+     * @return CompanyAnalysing4m
+     */
+    public function setEndYear($endYear = null)
+    {
+        $this->endYear = $endYear;
+
+        return $this;
+    }
+
+    /**
+     * Get endYear.
+     *
+     * @return int|null
+     */
+    public function getEndYear()
+    {
+        return $this->endYear;
     }
 }
