@@ -1,5 +1,5 @@
-company_analysing_4m : save begin year, end year
-import : analyse and update price right after
 get more company info : name, industry, exchange (HOSE, HNX, UPCOM)
 
 get listed date => begin date
+
+get industry list

@@ -16,7 +16,7 @@ class IndustryParser {
 
         $industry->industryCode = $data["industryCode"];
         $industry->industryLevel = $data["industryLevel"];
-        $industry->higherLevelCode = $data["higherLevelCode"];
+        $industry->higherLevelCode = $data["higherLevelCode"] ?? NULL;
         $industry->englishName = $data["englishName"];
         $industry->vietnameseName = $data["vietnameseName"];
         $industry->totalCount = $data["totalCount"];

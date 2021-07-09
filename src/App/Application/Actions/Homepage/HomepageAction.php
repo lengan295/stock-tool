@@ -7,7 +7,7 @@ namespace App\Application\Actions\Homepage;
 use anlutro\cURL\cURL;
 use App\Application\Actions\Action;
 use App\Domain\Company\Company;
-use App\Domain\Company\CompanyDataUpdater;
+use App\Domain\Company\CompanyDataImporter;
 use App\Domain\Company\CompanyHistoricalData;
 use App\Infrastructure\DchartApiSdk\DchartApiClient;
 use App\Infrastructure\FinfoVndSdk\FinfoApiClient;

@@ -8,7 +8,7 @@ namespace App\Domain\Company;
 use App\Infrastructure\FinanceApiClient;
 use Doctrine\ORM\EntityManagerInterface;
 
-class CompanyDataUpdater {
+class CompanyDataImporter {
     private $entityManager;
     private $apiClient;
 
@@ -17,7 +17,7 @@ class CompanyDataUpdater {
         $this->apiClient = $apiClient;
     }
 
-    public function updateCompanyData($code, $refreshHistoricalData = false) {
+    public function importCompanyData($code, $refreshHistoricalData = false) : Company {
         $api = $this->apiClient;
         $data = $api->getCompanyCurrentData($code);
 
@@ -74,5 +74,6 @@ class CompanyDataUpdater {
             }
         }
         $this->entityManager->persist($company);
+        return $company;
     }
 }

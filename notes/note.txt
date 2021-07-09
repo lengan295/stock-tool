@@ -19,6 +19,7 @@ https://finfo-api.vndirect.com.vn/v4/industry_classification?q=codeList:VHM~indu
 2357 : xay dung cong trinh
 3763 : Đồ may mặc, trang sức, phụ kiện
 3500 : thực phẩm đồ uống
+9000 : công nghệ
 
 https://finfo-api.vndirect.com.vn/v4/industry_classification?q=industryCode:8600
 
