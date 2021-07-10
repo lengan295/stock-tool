@@ -47,5 +47,8 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $entityManager;
         },
+        \Slim\Views\PhpRenderer::class => function (ContainerInterface $c) {
+            return new \Slim\Views\PhpRenderer('../templates/');
+        },
     ]);
 };
