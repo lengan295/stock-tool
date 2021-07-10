@@ -18,7 +18,7 @@ WHERE c.stock_price <= ca4m.chosen_price + 2000
   AND ca4m.net_income_grow_rate >= 0.1
   AND ca4m.equity_grow_rate >= 0.1
 #   AND ca4m.operating_cash_flow_grow_rate >= 0.1
-  AND c.code_industry = 3500
+  AND c.code_industry = 9000
 ;
 
 -- specified company
