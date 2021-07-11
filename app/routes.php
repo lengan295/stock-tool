@@ -16,6 +16,12 @@ return function (App $app) {
 
     $app->get('/', \App\Application\Actions\Homepage\HomepageAction::class);
 
+    $app->get('/company/{companyCode}', \App\Application\Actions\Company\ViewCompanyAction::class);
+    $app->get('/ajax/company/{companyCode}', \App\Application\Actions\Company\Ajax\GetCompanyDataAction::class); // todo
+
+
+    // temporary routes
+
     $app->get('/import/industry/{industryCode}', \App\Application\Actions\Company\ImportAction::class);
 
     $app->get('/analyse[/{industryCode}]', \App\Application\Actions\Company\AnalyseAction::class);

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?= $companyCode ?></title>
+
+    <?php require "header.phtml" ?>
+
+    <link rel="stylesheet" href="<?= $css_dir ?>view_company.css">
+
+    <script src="<?= $js_dir ?>company/company.module.js"></script>
+    <script src="<?= $js_dir ?>company/company.controller.js"></script>
+</head>
+<body>
+<div class="container" ng-app="Company" ng-controller="CompanyCtrl" ng-init="loadData('<?= $companyCode ?>')">
+    <?= $companyCode ?>
+</div>
+</body>
+</html>
