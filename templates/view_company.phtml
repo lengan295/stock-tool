@@ -12,7 +12,57 @@
 </head>
 <body>
 <div class="container" ng-app="Company" ng-controller="CompanyCtrl" ng-init="loadData('<?= $companyCode ?>')">
-    <?= $companyCode ?>
+    <div>
+        <h1><?= $companyCode ?></h1>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th ng-repeat="year in yearList" ng-bind="year"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Net Income</th>
+                <td ng-repeat="year in yearList" ng-bind="getNetIncomeInYear(year)"></td>
+            </tr>
+            <tr>
+                <th>YoY</th>
+                <td ng-repeat="year in yearList" ng-bind="getNetIncomeYoyInYear(year)"></td>
+            </tr>
+            <tr>
+                <th>NOPAT</th>
+                <td ng-repeat="year in yearList" ng-bind="getNopatInYear(year)"></td>
+            </tr>
+            <tr>
+                <th>YoY</th>
+                <td ng-repeat="year in yearList" ng-bind="getNopatYoyInYear(year)"></td>
+            </tr>
+            <tr>
+                <th>Equity</th>
+                <td ng-repeat="year in yearList" ng-bind="getEquityInYear(year)"></td>
+            </tr>
+            <tr>
+                <th>YoY</th>
+                <td ng-repeat="year in yearList" ng-bind="getEquityYoyInYear(year)"></td>
+            </tr>
+            <tr>
+                <th>Cash Flow</th>
+                <td ng-repeat="year in yearList" ng-bind="getOperatingCashFlowInYear(year)"></td>
+            </tr>
+            <tr>
+                <th>YoY</th>
+                <td ng-repeat="year in yearList" ng-bind="getOperatingCashFlowYoyInYear(year)"></td>
+            </tr>
+            <tr>
+                <th>ROIC</th>
+                <td ng-repeat="year in yearList" ng-bind="getRoicInYear(year)"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

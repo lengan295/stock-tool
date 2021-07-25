@@ -106,21 +106,28 @@ class GetCompanyDataAction extends Action {
         return [
             'reportType' => $datum->getReportType(),
             'fiscalDate' => $datum->getFiscalDate(),
-            'assetTotal' => (float)$datum->getAssetTotal(),
-            'shortTermDept' => (float)$datum->getShortTermDept(),
-            'longTermDept' => (float)$datum->getLongTermDept(),
-            'equity' => (float)$datum->getEquity(),
-            'equityYoy' => (float)$datum->getEquityYoy(),
-            'netIncome' => (float)$datum->getNetIncome(),
-            'netIncomeYoy' => (float)$datum->getNetIncomeYoy(),
-            'grossProfit' => (float)$datum->getGrossProfit(),
-            'nopat' => (float)$datum->getNopat(),
-            'nopatYoy' => (float)$datum->getNopatYoy(),
-            'operatingCashFlow' => (float)$datum->getOperatingCashFlow(),
-            'operatingCashFlowYoy' => (float)$datum->getOperatingCashFlowYoy(),
-            'cashAndCashEquivalents' => (float)$datum->getCashAndCashEquivalents(),
-            'roic' => (float)$datum->getRoic(),
+            'assetTotal' => $this->toNumberOrNull($datum->getAssetTotal()),
+            'shortTermDept' => $this->toNumberOrNull($datum->getShortTermDept()),
+            'longTermDept' => $this->toNumberOrNull($datum->getLongTermDept()),
+            'equity' => $this->toNumberOrNull($datum->getEquity()),
+            'equityYoy' => $this->toNumberOrNull($datum->getEquityYoy()),
+            'netIncome' => $this->toNumberOrNull($datum->getNetIncome()),
+            'netIncomeYoy' => $this->toNumberOrNull($datum->getNetIncomeYoy()),
+            'grossProfit' => $this->toNumberOrNull($datum->getGrossProfit()),
+            'nopat' => $this->toNumberOrNull($datum->getNopat()),
+            'nopatYoy' => $this->toNumberOrNull($datum->getNopatYoy()),
+            'operatingCashFlow' => $this->toNumberOrNull($datum->getOperatingCashFlow()),
+            'operatingCashFlowYoy' => $this->toNumberOrNull($datum->getOperatingCashFlowYoy()),
+            'cashAndCashEquivalents' => $this->toNumberOrNull($datum->getCashAndCashEquivalents()),
+            'roic' => $this->toNumberOrNull($datum->getRoic()),
         ];
     }
 
+    private function toNumberOrNull($value) {
+        if (is_null($value)) {
+            return $value;
+        }
+
+        return floatval($value);
+    }
 }
