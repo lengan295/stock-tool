@@ -1,7 +1,12 @@
-view page
+company view page
+-> historical data
+-> analyse 4m
+-> estimated price
+-> get more company info : name, industry, exchange (HOSE, HNX, UPCOM)
+-> get listed date => begin date
 
-get more company info : name, industry, exchange (HOSE, HNX, UPCOM)
+stock screener
 
-get listed date => begin date
+industry management
+-> get industry list
 
-get industry list

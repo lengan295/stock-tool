@@ -17,7 +17,7 @@ return function (App $app) {
     $app->get('/', \App\Application\Actions\Homepage\HomepageAction::class);
 
     $app->get('/company/{companyCode}', \App\Application\Actions\Company\ViewCompanyAction::class);
-    $app->get('/ajax/company/{companyCode}', \App\Application\Actions\Company\Ajax\GetCompanyDataAction::class); // todo
+    $app->get('/ajax/company/{companyCode}', \App\Application\Actions\Company\Ajax\GetCompanyDataAction::class);
 
 
     // temporary routes
