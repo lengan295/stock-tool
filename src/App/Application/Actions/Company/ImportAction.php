@@ -7,6 +7,7 @@ namespace App\Application\Actions\Company;
 use anlutro\cURL\cURL;
 use App\Domain\Company\CompanyAnalyser;
 use App\Domain\Company\CompanyDataImporter;
+use App\Domain\Company\CompanyHelper;
 use App\Domain\Company\StockPriceUpdater;
 use App\Domain\DomainException\DomainRecordNotFoundException;
 use App\Infrastructure\DchartApiSdk\DchartApiClient;
@@ -34,23 +35,13 @@ class ImportAction extends \App\Application\Actions\Action {
         $analyser = new CompanyAnalyser(new FinanceCalculator());
         $priceUpdater = new StockPriceUpdater($this->entityManager, $dchartApiClient);
 
+        $helper = new CompanyHelper($this->entityManager, $dataUpdater, $analyser, $priceUpdater);
+
         foreach ($codeList as $code) {
-            $company = $dataUpdater->importCompanyData($code);
+            $company = $helper->importAndAnalyse($code);
             $company->setCodeIndustry($industryCode);
-
-            if (!empty($existing = $company->getAnalysing4m())) {
-                $this->entityManager->remove($existing);
-            }
-            $analysing = $analyser->process($company);
-            if (!empty($analysing)) {
-                $company->setAnalysing4m($analysing);
-                $this->entityManager->persist($analysing);
-            }
-
-            $priceUpdater->updateStockPrice($company);
-
-            $this->entityManager->flush();
         }
+        $this->entityManager->flush();
 
         $this->response->getBody()->write('Done!');
         return $this->response;
